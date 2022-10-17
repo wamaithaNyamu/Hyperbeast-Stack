@@ -2,7 +2,15 @@
 import {Projects} from "../models/Project.js";
 import {Clients} from "../models/Client.js";
 
-import {GraphQLID, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLSchema, GraphQLString} from "graphql";
+import {
+    GraphQLEnumType,
+    GraphQLID,
+    GraphQLList,
+    GraphQLNonNull,
+    GraphQLObjectType,
+    GraphQLSchema,
+    GraphQLString
+} from "graphql";
 
 
 const ClientType = new GraphQLObjectType({
@@ -112,7 +120,41 @@ const mutation = new GraphQLObjectType({
                 return Clients.findByIdAndRemove(args.id)
             }
 
-        }
+        },
+
+        // Add project
+        addProject: {
+            type: ProjectType,
+            args: {
+                name: {type: GraphQLNonNull(GraphQLString)},
+                description: {type: GraphQLNonNull(GraphQLString)},
+                status: {type: new GraphQLEnumType ({
+                        name : 'ProjectStatus',
+                        values:{
+                            'new': {value: 'Not Started'},
+                            'progress': {value: 'In Progress'},
+                            'completed': {value: 'Completed'},
+                        }
+                    }),
+                    defaultValue : 'Not Started'
+                },
+                clientId : {
+                    type: GraphQLNonNull(GraphQLID)
+                }
+            },
+
+            resolve(parent, args) {
+                const project = new Projects({
+                    name: args.name,
+                    description: args.description,
+                    status: args.status,
+                    clientId: args.clientId,
+                });
+
+                return project.save();
+
+            }
+        },
     }
 })
 
