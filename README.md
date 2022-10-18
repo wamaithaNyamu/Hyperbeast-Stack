@@ -31,8 +31,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-[![Demo](http://img.youtube.com/vi/uyMVJivgTOQ/1.jpg)](http://www.youtube.com/watch?v=uyMVJivgTOQ "Graphql Demo")
-
+[![Everything Is AWESOME](https://yt-embed.live/embed?v=uyMVJivgTOQ)](https://www.youtube.com/watch?v=uyMVJivgTOQ "Everything Is AWESOME")
 Project made with React, Apollo, Graphql, Nodejs, Express, MongoDB, Mongoose and bootstrap following a tutorial from Brad Traversy.
 
 
