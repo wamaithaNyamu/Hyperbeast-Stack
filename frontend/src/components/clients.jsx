@@ -1,17 +1,7 @@
 import {gql, useQuery} from '@apollo/client'
 import Spinner from './Spinner';
 import ClientRow from './ClientRow';
-const GET_CLIENTS = gql`
-    query getClients {
-        clients {
-            id
-            name
-            email
-            phone
-        }
-    }
-
-`
+import {GET_CLIENTS} from '../queries/clientQueries';
 
 
 export default function Clients() {
